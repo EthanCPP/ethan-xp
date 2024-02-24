@@ -15,4 +15,5 @@ export default defineConfig({
             "fast-deep-equal"
         ],
     },
+    assetsInclude: ['**/*.bmp']
 });

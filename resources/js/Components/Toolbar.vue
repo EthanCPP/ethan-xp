@@ -19,6 +19,20 @@ onMounted(() => {
     setInterval(() => {
         setTime();
     }, 60000);
+
+    //TODO this is quite heavy. Improve this?
+    document.addEventListener('click', function(e) {
+        const startMenu = document.querySelector('.start-menu');
+
+        if (startMenu) {
+            if (! startMenu.contains(e.target) && 
+                ! e.target.classList.contains('toolbar__start') &&
+                ! document.querySelector('.toolbar__start').contains(e.target)
+            ) {
+                startOpen.value = false;
+            }
+        }
+    })
 });
 </script>
 

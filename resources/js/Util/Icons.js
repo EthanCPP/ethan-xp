@@ -68,6 +68,11 @@ import iconWmpFile from '@/../image/icons/wmp-file.png';
 import iconWmp from '@/../image/icons/wmp.png';
 import iconWordpad from '@/../image/icons/wordpad.png';
 import iconZip from '@/../image/icons/zip.png';
+import iconOutlook from '@/../image/icons/outlook.png';
+import iconFolderPics from '@/../image/icons/folder-pics.png';
+import iconFolderDocs2 from '@/../image/icons/folder-docs-2.png';
+import iconMinesweeper from '@/../image/icons/minesweeper.png';
+import iconPinball from '@/../image/icons/pinball.png';
 
 export default {
     windows: iconWindows,
@@ -141,4 +146,9 @@ export default {
     wmp : iconWmp,
     wordpad : iconWordpad,
     zip : iconZip,
+    outlook : iconOutlook,
+    folderPics : iconFolderPics,
+    folderDocs2 : iconFolderDocs2,
+    minesweeper : iconMinesweeper,
+    pinball : iconPinball,
 };

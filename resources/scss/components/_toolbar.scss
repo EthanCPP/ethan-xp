@@ -24,7 +24,7 @@
         position: absolute;
         top: 0;
         left: 0;
-        width: 180px;
+        width: 150px;
         height: 100%;
         background-color: #45a946;
         border-radius: 0;
@@ -40,6 +40,11 @@
             font-size: 26px;
             line-height: 26px;
             font-style: italic;
+
+            img {
+                width: 30px;
+                height: auto;
+            }
         }
 
         &:hover {
