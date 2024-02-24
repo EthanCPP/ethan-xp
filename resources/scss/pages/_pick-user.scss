@@ -66,6 +66,14 @@
             font-size: 40px;
         }
 
+        &__welcome {
+            font-style: italic;
+            font-size: 70px;
+            color: white;
+            font-weight: 600;
+            text-shadow: 3px 3px 3px #113499;
+        }
+
         &__divider {
             position: absolute;
             left: 50%;
@@ -81,6 +89,18 @@
             display: flex;
             flex-direction: column;
             gap: 60px
+        }
+
+        &__logout-logo {
+            width: 200px;
+            height: auto;
+        }
+
+        &__logout-prompt {
+            color: white;
+            font-weight: 600;
+            font-size: 21px;
+            letter-spacing: 1px;
         }
 
         &__user {
@@ -125,6 +145,16 @@
                 }
             }
 
+            &--selected {
+                .pick-layout {
+                    &__user {
+                        &__inner {
+                            opacity: 1;
+                        }
+                    }
+                }
+            }
+
             &__profile {
                 border-radius: 5px;
                 background-color: #ccd6eb;
@@ -145,6 +175,13 @@
                 font-size: 40px;
                 line-height: 40px;
                 color: white;
+            }
+
+            &__status {
+                display: block;
+                font-weight: 600;
+                letter-spacing: 1px;
+                color: #113499;
             }
 
             &__link {
