@@ -1,0 +1,20 @@
+.desktop-shortcut {
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    padding: 0;
+
+    &__icon {
+        width: 40px;
+    }
+    
+    &__name {
+        margin-top: 10px;
+        color: white;
+        font-size: 14px;
+        text-shadow: 1px 1px 1px black;
+        line-height: 18px;
+        display: block;
+        height: 40px;
+    }
+}
