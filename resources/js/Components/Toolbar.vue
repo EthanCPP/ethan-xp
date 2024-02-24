@@ -1,6 +1,7 @@
 <script setup>
 import { onMounted, ref } from 'vue';
 import StartMenu from './StartMenu.vue';
+import Icons from '@/Util/Icons';
 
 const emit = defineEmits(['logout', 'shutdown']);
 
@@ -33,7 +34,10 @@ onMounted(() => {
                 startOpen ? 'toolbar__start--open' : '',
             ]"
         >
-            <span class="toolbar__start__label">start</span>
+            <span class="toolbar__start__label">
+                <img :src="Icons.windows" />
+                start
+            </span>
         </button>
 
         <div class="toolbar__shortcuts">
