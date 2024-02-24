@@ -67,6 +67,43 @@
         background-color: white;
         border-right: 1px solid #aecdf3;
         width: 50%;
+        padding: 10px;
+    }
+
+    &__quicklaunch-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+        height: 60px;
+        padding: 5px;
+        text-align: left;
+        border-radius: 0;
+        transition: none;
+        
+        &__icon {
+            width: 50px;
+            height: 50px;
+        }
+
+        &__name {
+            color: #3e3e3f;
+            line-height: 20px;
+        }
+
+        &:hover,
+        &:focus {
+            cursor: default;
+            background-color: #316ac5;
+
+            .start-menu {
+                &__quicklaunch-item {
+                    &__name {
+                        color: white;
+                    }
+                }
+            }
+        }
     }
 
     &__explore {

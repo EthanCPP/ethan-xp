@@ -13,7 +13,14 @@ const emit = defineEmits(['logout', 'shutdown']);
         </div>
         <div class="start-menu__body">
             <div class="start-menu__quicklaunch">
-
+                <button type="button" class="btn start-menu__quicklaunch-item">
+                    <img src="https://via.placeholder.com/64x64" class="start-menu__quicklaunch-item__icon" />
+                    <span class="start-menu__quicklaunch-item__name">Internet Explorer</span>
+                </button>
+                <button type="button" class="btn start-menu__quicklaunch-item">
+                    <img src="https://via.placeholder.com/64x64" class="start-menu__quicklaunch-item__icon" />
+                    <span class="start-menu__quicklaunch-item__name">Outlook Express Express Express Express</span>
+                </button>
             </div>
             <div class="start-menu__explore">
 
