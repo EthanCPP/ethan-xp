@@ -7,7 +7,6 @@ import Notepad from '../Notepad.vue';
 const emit = defineEmits(['startApplication']);
 
 function startApplication(application, target, other) {
-    console.log('start', application, target, other);
     emit('startApplication', application, target, other);
 }
 </script>

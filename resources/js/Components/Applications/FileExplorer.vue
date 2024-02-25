@@ -5,30 +5,26 @@ import Icons from '../../Util/Icons';
 import RecycleBin from './ExplorerLocations/RecycleBin.vue';
 import SomeProject from './ExplorerLocations/SomeProject.vue';
 import InternetExplorer from './ExplorerLocations/InternetExplorer.vue';
+import GenericFile from './ExplorerLocations/GenericFile.vue';
 
 const emit = defineEmits(['startApplication']);
 const props = defineProps(['target', 'other']);
 
-const data = ref({location: null, component: null, address: null, icon: null, title: null});
+const data = ref({location: null, component: null, address: null, icon: null, title: null, other: null});
 
 function getData() {
     switch(data.value.location) {
-        case 'recycle-bin':
-            data.value.icon = Icons.binEmpty;
-            data.value.address = 'Recycle Bin';
-            data.value.title = 'Recycle Bin';
-            data.value.component = RecycleBin;
-            break;
-        case 'some-project':
-            data.value.icon = Icons.folder;
-            data.value.address = 'C:\\Documents and Settings\\Ethan\\My Documents\\Some project';
-            data.value.title = 'Some project';
-            data.value.component = SomeProject;
-            break;
         case 'internet-explorer':
-            data.value.icon = Icons.ie;
-            data.value.title = 'Internet Explorer';
+            data.value.icon = Icons[props.other.icon];
+            data.value.title = props.other.name;
             data.value.component = InternetExplorer;
+            data.value.address = props.other.other;
+            break;
+        case 'generic-file':
+            data.value.icon = Icons[props.other.icon];
+            data.value.title = props.other.name;
+            data.value.component = GenericFile;
+            data.value.other = props.other;
             break;
         default:
             data.value.icon = Icons.folder;
@@ -39,6 +35,10 @@ function getData() {
 
 onMounted(() => {
     data.value.location = props.target;
+
+    if (props.other?.target) {
+        data.value.location = props.other.target;
+    }
 
     if (props.other?.url) {
         data.value.address = props.other.url;
@@ -104,6 +104,7 @@ function startApplication(application, target = '', other = '') {
             v-if="data.component"
             :is="data.component"
             :address="data.address"
+            :other="data.other"
             @close="closeApplication(index)"
             @startApplication="startApplication"
         />

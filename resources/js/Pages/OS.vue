@@ -2,6 +2,9 @@
 import { ref } from 'vue';
 import Desktop from '../Components/Desktop.vue';
 import Toolbar from '../Components/Toolbar.vue';
+import FileExplorer from '../Components/Applications/FileExplorer.vue';
+import Notepad from '../Components/Applications/Notepad.vue';
+import ErrorMsg from '../Components/Applications/ErrorMsg.vue'
 
 const emit = defineEmits(['logout', 'shutdown']);
 
@@ -26,7 +29,15 @@ function bringToFront(index) {
 }
 
 function startApplication(application, target = '', other = '') {
-    spawnApplication(application, target, other);
+    let component;
+
+    switch (application) {
+        case 'file-explorer': component = FileExplorer; break;
+        case 'notepad': component = Notepad; break;
+        case 'error': component = ErrorMsg; break;
+    }
+
+    spawnApplication(component, target, other);
 }
 
 function closeApplication(index) {
