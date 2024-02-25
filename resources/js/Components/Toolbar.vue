@@ -14,6 +14,7 @@ function setTime() {
 }
 
 function startApplication(application, target, other) {
+    startOpen.value = false;
     emit('startApplication', application, target, other);
 }
 
@@ -25,7 +26,7 @@ onMounted(() => {
     }, 60000);
 
     //TODO this is quite heavy. Improve this?
-    document.addEventListener('click', function(e) {
+    document.addEventListener('mousedown', function(e) {
         const startMenu = document.querySelector('.start-menu');
 
         if (startMenu) {

@@ -4,10 +4,18 @@ import Application from '../Application.vue';
 import NotepadData from '../../Util/NotepadData';
 
 const props = defineProps(['target', 'other']);
+
+function getName() {
+    if (props.other.name == 'Notepad') {
+        return 'Untitled - Notepad';
+    }
+
+    return props.other.name + ' - Notepad';
+}
 </script>
 
 <template>
-    <Application :icon="Icons.notepad" :title="other.name + ' - Notepad'">
+    <Application :icon="Icons.notepad" :title="getName()">
         <div class="notepad">
             <div class="notepad__toolbar">
                 <button type="button" class="btn notepad__toolbar__btn">File</button>
@@ -18,7 +26,7 @@ const props = defineProps(['target', 'other']);
                 <button type="button" class="btn notepad__toolbar__btn">Help</button>
             </div>
 
-            <div class="notepad__content" v-html="other.other"></div>
+            <textarea class="notepad__content" v-html="other.other"></textarea>
         </div>
     </Application>
 </template>

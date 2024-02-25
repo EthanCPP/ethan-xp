@@ -24,7 +24,8 @@ onMounted(() => {
                     <img :src="Icons.errorButton" class="error-msg__error-icon" />
                 </div>
                 <div class="error-msg__content-right">
-                    {{ other.other }}
+                    <span v-if="other.other != ''">{{ other.other }}</span>
+                    <span v-else>The program could not be found</span>
                 </div>
             </div>
 

@@ -160,7 +160,7 @@
                 background-color: #ccd6eb;
                 padding: 5px;
                 box-shadow: 3px 3px 12px 3px #486dca;
-                width: 130px;
+                width: 100px;
                 height: 100px;
                 transition: background-color 0.3s ease;
             }
@@ -175,6 +175,45 @@
                 font-size: 40px;
                 line-height: 40px;
                 color: white;
+            }
+
+            &__password-wrap {
+                margin-top: 4px;
+            }
+
+            &__password-prompt {
+                color: white;
+                font-size: 13px;
+                line-height: 13px;
+                margin-bottom: 3px;
+            }
+
+            &__password {
+                height: 28px;
+                position: relative;
+            }
+
+            &__login-btn {
+                padding: 0;
+
+                img {
+                    width: 28px;
+                    height: 28px;
+                }
+
+                &:hover {
+                    cursor: default !important;
+
+                    img {
+                        filter: brightness(1.15);
+                    }
+                }
+
+                &:active {
+                    img {
+                        filter: brightness(0.85);
+                    }
+                }
             }
 
             &__status {
@@ -192,6 +231,10 @@
                 height: 100%;
                 z-index: 1;
                 border: none;
+
+                &:hover {
+                    cursor: pointer !important;
+                }
 
                 &:hover + .pick-layout,
                 &:focus + .pick-layout {
@@ -217,6 +260,16 @@
                             &::after {
                                 visibility: visible;
                             }
+                        }
+                    }
+                }
+            }
+
+            &--protected {
+                .pick-layout {
+                    &__user {
+                        &__link {
+                            z-index: 0;
                         }
                     }
                 }

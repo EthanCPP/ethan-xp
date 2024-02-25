@@ -8,10 +8,7 @@ import Api from '../Util/Api';
 
 const emit = defineEmits(['startApplication']);
 
-const shortcuts = ref([
-    // { icon: Icons.binEmpty, name: 'Recycle Bin', application: FileExplorer, target: 'recycle-bin' },
-    // { icon: Icons.folder, name: 'Some project', application: FileExplorer, target: 'some-project' },
-]);
+const shortcuts = ref([]);
 
 let api;
 

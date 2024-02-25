@@ -1,13 +1,47 @@
 <script setup>
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import Icons from '../Util/Icons';
 import UserIconFrog from '@/../image/user/frog.bmp';
-import FileExplorer from './Applications/FileExplorer.vue';
+import Api from '../Util/Api';
 
 
-const emit = defineEmits(['logout', 'shutdown']);
+const emit = defineEmits(['logout', 'shutdown', 'startApplication']);
 
-const allProgramsList = ref(false);
+const allProgramsListOpen = ref(false);
+
+const programList = ref([]);
+const allProgramsList = ref([]);
+const favouritesList = ref([]);
+
+let api;
+
+onMounted(() => {
+    api = new Api();
+
+    hydrateList('start', programList);
+    hydrateList('all-programs', allProgramsList);
+    hydrateList('favourite-programs', favouritesList);
+});
+
+async function hydrateList(name, list) {
+    const programs = await api.getFilesAtLocation(name);
+
+    if (programs) {
+        programs.forEach(function(file) {
+            list.value.push({
+                icon: Icons[file.icon],
+                name: file.name,
+                application: file.application,
+                target: file.target,
+                other: file,
+            });
+        });
+    }
+}
+
+function startApplication(application, target, other) {
+    emit('startApplication', application, target, other);
+}
 </script>
 
 <template>
@@ -20,35 +54,18 @@ const allProgramsList = ref(false);
         </div>
         <div class="start-menu__body">
             <div class="start-menu__quicklaunch">
-                <button 
-                    type="button" 
+                <button
+                    v-if="programList.length"
+                    v-for="program in programList"
                     class="btn start-menu__quicklaunch-item" 
-                    @click="$emit('startApplication', FileExplorer, 'internet-explorer', {
-                        url: 'https://www.google.com/webhp?igu=1',
-                    })"
+                    @click="startApplication(program.application, program.target, program.other)"
                 >
-                    <img :src="Icons.ie" class="start-menu__quicklaunch-item__icon" />
-                    <span class="start-menu__quicklaunch-item__name">Internet Explorer</span>
-                </button>
-                <button type="button" class="btn start-menu__quicklaunch-item">
-                    <img :src="Icons.outlook" class="start-menu__quicklaunch-item__icon" />
-                    <span class="start-menu__quicklaunch-item__name">Outlook Express</span>
-                </button>
-                <button type="button" class="btn start-menu__quicklaunch-item">
-                    <img :src="Icons.wmp" class="start-menu__quicklaunch-item__icon" />
-                    <span class="start-menu__quicklaunch-item__name">Windows Media Player</span>
-                </button>
-                <button type="button" class="btn start-menu__quicklaunch-item">
-                    <img :src="Icons.msm" class="start-menu__quicklaunch-item__icon" />
-                    <span class="start-menu__quicklaunch-item__name">Windows Messenger</span>
-                </button>
-                <button type="button" class="btn start-menu__quicklaunch-item">
-                    <img :src="Icons.cmd" class="start-menu__quicklaunch-item__icon" />
-                    <span class="start-menu__quicklaunch-item__name">Command Prompt</span>
+                    <img :src="program.icon" class="start-menu__quicklaunch-item__icon" />
+                    <span class="start-menu__quicklaunch-item__name">{{ program.name }}</span>
                 </button>
 
                 <div class="start-menu__all-programs">
-                    <button @click="allProgramsList = !allProgramsList" type="button" class="btn start-menu__all-programs-btn">
+                    <button @click="allProgramsListOpen = !allProgramsListOpen" type="button" class="btn start-menu__all-programs-btn">
                         <span>All Programs</span>
                         <img :src="Icons.play" />
                     </button>
@@ -57,75 +74,29 @@ const allProgramsList = ref(false);
                 <div 
                     :class="[
                         'start-menu__all-programs-list',
-                        allProgramsList ? 'start-menu__all-programs-list--open' : '',
+                        allProgramsListOpen ? 'start-menu__all-programs-list--open' : '',
                     ]"
                 >
-                    <button type="button" class="btn start-menu__all-programs-list__item">
-                        <img :src="Icons.ie" />
-                        <span>Internet Explorer</span>
-                    </button>
-                    <button type="button" class="btn start-menu__all-programs-list__item">
-                        <img :src="Icons.outlook" />
-                        <span>Outlook Express</span>
-                    </button>
-                    <button type="button" class="btn start-menu__all-programs-list__item">
-                        <img :src="Icons.wmp" />
-                        <span>Windows Media Player</span>
-                    </button>
-                    <button type="button" class="btn start-menu__all-programs-list__item">
-                        <img :src="Icons.msm" />
-                        <span>Windows Messenger</span>
-                    </button>
-                    <button type="button" class="btn start-menu__all-programs-list__item">
-                        <img :src="Icons.notepad" />
-                        <span>Notepad</span>
-                    </button>
-                    <button type="button" class="btn start-menu__all-programs-list__item">
-                        <img :src="Icons.pinball" />
-                        <span>Pinball</span>
-                    </button>
-                    <button type="button" class="btn start-menu__all-programs-list__item">
-                        <img :src="Icons.minesweeper" />
-                        <span>Minesweeper</span>
-                    </button>
-                    <button type="button" class="btn start-menu__all-programs-list__item">
-                        <img :src="Icons.cmd" />
-                        <span>Command Prompt</span>
+                    <button
+                        v-if="allProgramsList.length"
+                        v-for="program in allProgramsList"
+                        class="btn start-menu__all-programs-list__item" 
+                        @click="startApplication(program.application, program.target, program.other)"
+                    >
+                        <img :src="program.icon" />
+                        <span>{{ program.name }}</span>
                     </button>
                 </div>
             </div>
             <div class="start-menu__explore">
-                <button type="button" class="btn start-menu__explore-item">
-                    <img :src="Icons.folderDocs2" class="start-menu__explore-item__icon" />
-                    <span class="start-menu__explore-item__name">My Documents</span>
-                </button>
-                <button type="button" class="btn start-menu__explore-item">
-                    <img :src="Icons.folderVideo" class="start-menu__explore-item__icon" />
-                    <span class="start-menu__explore-item__name">My Videos</span>
-                </button>
-                <button type="button" class="btn start-menu__explore-item">
-                    <img :src="Icons.folderPics" class="start-menu__explore-item__icon" />
-                    <span class="start-menu__explore-item__name">My Pictures</span>
-                </button>
-                <button type="button" class="btn start-menu__explore-item">
-                    <img :src="Icons.computer" class="start-menu__explore-item__icon" />
-                    <span class="start-menu__explore-item__name">My Computer</span>
-                </button>
-                <button type="button" class="btn start-menu__explore-item">
-                    <img :src="Icons.control" class="start-menu__explore-item__icon" />
-                    <span class="start-menu__explore-item__name">Control Panel</span>
-                </button>
-                <button type="button" class="btn start-menu__explore-item">
-                    <img :src="Icons.helpCircle" class="start-menu__explore-item__icon" />
-                    <span class="start-menu__explore-item__name">Help and Support</span>
-                </button>
-                <button type="button" class="btn start-menu__explore-item">
-                    <img :src="Icons.search" class="start-menu__explore-item__icon" />
-                    <span class="start-menu__explore-item__name">Search</span>
-                </button>
-                <button type="button" class="btn start-menu__explore-item">
-                    <img :src="Icons.run" class="start-menu__explore-item__icon" />
-                    <span class="start-menu__explore-item__name">Run...</span>
+                <button
+                    v-if="favouritesList.length"
+                    v-for="program in favouritesList"
+                    class="btn start-menu__explore-item" 
+                    @click="startApplication(program.application, program.target, program.other)"
+                >
+                    <img :src="program.icon" class="start-menu__explore-item__icon" />
+                    <span class="start-menu__explore-item__name">{{ program.name }}</span>
                 </button>
             </div>
         </div>

@@ -1,6 +1,9 @@
 <script setup>
 import bootLogo from '@/../image/boot-logo.png';
 import { onMounted, ref } from 'vue';
+import UserIconFrog from '@/../image/user/frog.bmp';
+import UserIconDuck from '@/../image/user/duck.bmp';
+import Icons from '../Util/Icons';
 
 const props = defineProps(['args']);
 const emit = defineEmits(['loaded']);
@@ -85,22 +88,37 @@ function selectUser(user) {
 
                         <div class="pick-layout__user__inner">
                             <div class="pick-layout__user__profile">
-                                <img class="pick-layout__user__image" src="https://via.placeholder.com/400x400" />
+                                <img class="pick-layout__user__image" :src="UserIconFrog" />
                             </div>
 
-                            <span class="pick-layout__user__name">Guest</span>
+                            <div class="pick-layout__user__content">
+                                <span class="pick-layout__user__name">Guest</span>
+                            </div>
                         </div>  
                     </div>
 
-                    <div class="pick-layout__user">
-                        <button @click="selectUser('Ethan')" type="button" class="btn pick-layout__user__link"></button>
+                    <div class="pick-layout__user pick-layout__user--protected">
+                        <button type="button" class="btn pick-layout__user__link"></button>
                         
                         <div class="pick-layout__user__inner">
                             <div class="pick-layout__user__profile">
-                                <img class="pick-layout__user__image" src="https://via.placeholder.com/400x400" />
+                                <img class="pick-layout__user__image" :src="UserIconDuck" />
                             </div>
 
-                            <span class="pick-layout__user__name">Ethan</span>
+                            <div class="pick-layout__user__content">
+                                <span class="pick-layout__user__name">Ethan</span>
+
+                                <div class="pick-layout__user__password-wrap">
+                                    <span class="pick-layout__user__password-prompt">Type your password</span>
+
+                                    <div class="d-flex align-items-center gap-1">
+                                        <input type="password" class="form-control pick-layout__user__password" />
+                                        <button type="button" class="btn pick-layout__user__login-btn">
+                                            <img :src="Icons.navNext" />
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>  
                     </div>
                 </div>

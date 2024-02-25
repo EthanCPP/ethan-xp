@@ -13,22 +13,19 @@ const props = defineProps(['target', 'other']);
 const data = ref({location: null, component: null, address: null, icon: null, title: null, other: null});
 
 function getData() {
+    data.value.icon = props.other?.icon ? Icons[props.other.icon] : Icons.folder;
+    data.value.title = props.other?.name ? props.other.name : 'Unknown';
+
     switch(data.value.location) {
         case 'internet-explorer':
-            data.value.icon = Icons[props.other.icon];
-            data.value.title = props.other.name;
             data.value.component = InternetExplorer;
             data.value.address = props.other.other;
             break;
         case 'generic-file':
-            data.value.icon = Icons[props.other.icon];
-            data.value.title = props.other.name;
             data.value.component = GenericFile;
             data.value.other = props.other;
             break;
         default:
-            data.value.icon = Icons.folder;
-            data.value.title = 'Unknown';
             break;
     }
 }
