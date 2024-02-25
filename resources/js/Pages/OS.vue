@@ -9,12 +9,14 @@ const os = ref(null);
 const applications = ref([]);
 const currentZIndex = ref(0);
 
-function spawnApplication(component) {
+function spawnApplication(component, target = '', other = '') {
     currentZIndex.value++;
 
     applications.value.push({
         component,
         zIndex: currentZIndex.value,
+        target,
+        other,
     });
 }
 
@@ -23,8 +25,8 @@ function bringToFront(index) {
     applications.value[index].zIndex = currentZIndex.value;
 }
 
-function startApplication(application) {
-    spawnApplication(application);
+function startApplication(application, target = '', other = '') {
+    spawnApplication(application, target, other);
 }
 
 function closeApplication(index) {
@@ -34,7 +36,7 @@ function closeApplication(index) {
 
 <template>
     <main class="os" ref="os">
-        <Toolbar @logout="$emit('logout')" @shutdown="$emit('shutdown')" />
+        <Toolbar @logout="$emit('logout')" @shutdown="$emit('shutdown')" @start-application="startApplication" />
 
         <div class="os__main">
             <Desktop @startApplication="startApplication" />
@@ -44,8 +46,11 @@ function closeApplication(index) {
                 v-for="(application, index) in applications"
                 :is="application?.component"
                 :z-index="application?.zIndex"
+                :target="application?.target"
+                :other="application?.other"
                 @mousedown="bringToFront(index)"
                 @close="closeApplication(index)"
+                @startApplication="startApplication"
             />
         </div>
     </main>

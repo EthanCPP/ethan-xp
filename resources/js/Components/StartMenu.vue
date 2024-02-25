@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 import Icons from '../Util/Icons';
 import UserIconFrog from '@/../image/user/frog.bmp';
+import FileExplorer from './Applications/FileExplorer.vue';
 
 
 const emit = defineEmits(['logout', 'shutdown']);
@@ -19,7 +20,13 @@ const allProgramsList = ref(false);
         </div>
         <div class="start-menu__body">
             <div class="start-menu__quicklaunch">
-                <button type="button" class="btn start-menu__quicklaunch-item">
+                <button 
+                    type="button" 
+                    class="btn start-menu__quicklaunch-item" 
+                    @click="$emit('startApplication', FileExplorer, 'internet-explorer', {
+                        url: 'https://www.google.com/webhp?igu=1',
+                    })"
+                >
                     <img :src="Icons.ie" class="start-menu__quicklaunch-item__icon" />
                     <span class="start-menu__quicklaunch-item__name">Internet Explorer</span>
                 </button>

@@ -1,0 +1,31 @@
+.explorer-file {
+    border: none !important;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 200px;
+    transition: none;
+
+    &__icon {
+        width: 50px;
+    }
+
+    &__title {
+        color: #1f1f1f;
+        padding: 2px;
+        font-size: 14px;
+    }
+
+    &:focus {
+        .explorer-file {
+            &__icon {
+                opacity: 0.7;
+            }
+
+            &__title {
+                color: white;
+                background-color: #316ac5;
+            }
+        }
+    }
+}

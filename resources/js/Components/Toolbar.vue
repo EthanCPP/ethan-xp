@@ -3,7 +3,7 @@ import { onMounted, ref } from 'vue';
 import StartMenu from './StartMenu.vue';
 import Icons from '@/Util/Icons';
 
-const emit = defineEmits(['logout', 'shutdown']);
+const emit = defineEmits(['logout', 'shutdown', 'startApplication']);
 
 const time = ref('');
 const startOpen = ref(false);
@@ -11,6 +11,10 @@ const startOpen = ref(false);
 function setTime() {
     const date = new Date();
     time.value = date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
+}
+
+function startApplication(application, target, other) {
+    emit('startApplication', application, target, other);
 }
 
 onMounted(() => {
@@ -37,7 +41,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <StartMenu v-if="startOpen" @logout="$emit('logout')" @shutdown="$emit('shutdown')" />
+    <StartMenu v-if="startOpen" @logout="$emit('logout')" @shutdown="$emit('shutdown')" @start-application="startApplication" />
     <div class="toolbar">
         <button 
             type="button" 

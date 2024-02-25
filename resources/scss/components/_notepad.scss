@@ -1,0 +1,39 @@
+.notepad {
+    display: flex;
+    height: inherit;
+    flex-direction: column;
+
+    &__toolbar {
+        background-color: #efede2;
+        padding: 0 2px;
+        display: flex;
+        width: 100%;
+        position: relative;
+        border-bottom: 1px solid #ddd7c3;
+        flex-shrink: 0;
+
+        &__btn {
+            font-size: 13px;
+            padding: 0 8px;
+            height: 24px;
+            color: #1f1f1f;
+            border: none;
+            border-radius: 0;
+
+            &:hover,
+            &:active {
+                border: none;
+                background-color: #316ac5 !important;
+                color: white !important;
+                cursor: default;
+            }
+        }
+    }
+
+    &__content {
+        font-size: 14px;
+        padding: 10px;
+        flex-grow: 1;
+        overflow-y: auto;
+    }
+}

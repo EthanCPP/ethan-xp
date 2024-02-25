@@ -2,7 +2,7 @@
 import { onMounted, ref } from 'vue';
 
 const emit = defineEmits(['open']);
-const props = defineProps(['icon', 'name', 'application']);
+const props = defineProps(['icon', 'name', 'application', 'target']);
 
 const shortcut = ref(null);
 
@@ -23,7 +23,7 @@ function shortcutClick() {
     const currentTime = (new Date()).getTime();
 
     if (currentTime - lastClickAt.value <= 700) {
-        emit('open', props.application);
+        emit('open', props.application, props.target ?? null);
         lastClickAt.value = 0;
     } else {
         lastClickAt.value = currentTime;
