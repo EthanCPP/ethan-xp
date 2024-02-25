@@ -1,11 +1,13 @@
 <script setup>
 import { onMounted, ref } from 'vue';
 
-const props = defineProps(['icon', 'name']);
+const emit = defineEmits(['open']);
+const props = defineProps(['icon', 'name', 'application']);
 
 const shortcut = ref(null);
 
 const singleClick = ref(false);
+const lastClickAt = ref(null);
 
 function getName() {
     if (props.name.length > 20 && !singleClick.value) {
@@ -17,6 +19,15 @@ function getName() {
 
 function shortcutClick() {
     singleClick.value = true;
+
+    const currentTime = (new Date()).getTime();
+
+    if (currentTime - lastClickAt.value <= 700) {
+        emit('open', props.application);
+        lastClickAt.value = 0;
+    } else {
+        lastClickAt.value = currentTime;
+    }
 }
 
 onMounted(() => {
@@ -29,8 +40,17 @@ onMounted(() => {
 </script>
 
 <template>
-    <button @click="shortcutClick" type="button" class="btn desktop-shortcut" ref="shortcut">
+    <button 
+        @click="shortcutClick" 
+        type="button" 
+        :class="[
+            'btn',
+            'desktop-shortcut',
+            singleClick ? 'desktop-shortcut--selected' : '',
+        ]"
+        ref="shortcut"
+    >
         <img :src="icon" class="desktop-shortcut__icon" />
-        <span class="desktop-shortcut__name">{{ getName() }}</span>
+        <span class="desktop-shortcut__name"><span>{{ getName() }}</span></span>
     </button>
 </template>

@@ -1,3 +1,13 @@
-main.os {
+.os {
     height: 100vh;
+
+    &__main {
+        display: block;
+        width: 100%;
+        height: calc(100vh - 40px);
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        left: 0;
+    }
 }

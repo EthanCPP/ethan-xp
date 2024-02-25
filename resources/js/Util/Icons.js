@@ -73,6 +73,8 @@ import iconFolderPics from '@/../image/icons/folder-pics.png';
 import iconFolderDocs2 from '@/../image/icons/folder-docs-2.png';
 import iconMinesweeper from '@/../image/icons/minesweeper.png';
 import iconPinball from '@/../image/icons/pinball.png';
+import iconFileBack from '@/../image/icons/file-back.png';
+import iconFolderUp from '@/../image/icons/folder-up.png';
 
 export default {
     windows: iconWindows,
@@ -151,4 +153,6 @@ export default {
     folderDocs2 : iconFolderDocs2,
     minesweeper : iconMinesweeper,
     pinball : iconPinball,
+    fileBack : iconFileBack,
+    folderUp : iconFolderUp,
 };
