@@ -10,7 +10,7 @@ const STATES = {
     OS: 2,
 };
 
-const state = ref(STATES.PICK_USER);
+const state = ref(STATES.OS);
 const args = ref({});
 
 onMounted(() => {

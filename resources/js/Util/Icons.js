@@ -75,6 +75,12 @@ import iconMinesweeper from '@/../image/icons/minesweeper.png';
 import iconPinball from '@/../image/icons/pinball.png';
 import iconFileBack from '@/../image/icons/file-back.png';
 import iconFolderUp from '@/../image/icons/folder-up.png';
+import iconEmailSend from '@/../image/icons/email-send.png';
+import iconCut from '@/../image/icons/cut.png';
+import iconCopy from '@/../image/icons/copy.png';
+import iconPaste from '@/../image/icons/paste.png';
+import iconUndo from '@/../image/icons/undo.png';
+import iconEmailTo from '@/../image/icons/email-to.png';
 
 export default {
     windows: iconWindows,
@@ -155,4 +161,10 @@ export default {
     pinball : iconPinball,
     fileBack : iconFileBack,
     folderUp : iconFolderUp,
+    emailSend : iconEmailSend,
+    cut : iconCut,
+    copy : iconCopy,
+    paste : iconPaste,
+    undo : iconUndo,
+    emailTo : iconEmailTo,
 };

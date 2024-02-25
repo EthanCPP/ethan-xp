@@ -5,11 +5,11 @@ export default class Api {
     constructor() {
     }
 
-    async sendRequest(endpoint, data = null) {
+    async sendRequest(endpoint, data = null, method = 'get') {
         const response = await axios({
-            method: 'get',
+            method,
             url: '/api/' + endpoint,
-            params: data,
+            data: data,
         });
 
         return response.data;
@@ -21,5 +21,13 @@ export default class Api {
 
     async getFilesInFolder(id) {
         return await this.sendRequest('files/folder/' + id);
+    }
+
+    async getCsrfToken() {
+        return await this.sendRequest('token');
+    }
+
+    async sendEmail(data) {
+        return await this.sendRequest('send-email', data, 'post');
     }
 }

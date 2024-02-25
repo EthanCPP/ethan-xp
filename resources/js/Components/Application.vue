@@ -1,7 +1,7 @@
 <script setup>
 import { onMounted, ref } from 'vue';
 
-const props = defineProps(['icon', 'title', 'zIndex']);
+const props = defineProps(['icon', 'title', 'zIndex', 'width', 'height']);
 
 const application = ref(null);
 const appX = ref(0);
@@ -62,6 +62,26 @@ function maximise() {
         maximised.value = false;
     }
 }
+
+function getStyle() {
+    let style = '';
+    
+    style += `z-index: ${props.zIndex};`;
+    style += `left: ${appX.value}px;`;
+    style += `top: ${appY.value}px;`;
+
+    if (! maximised.value) {
+        if (props.width) {
+            style += `width: ${props.width}px;`;
+        }
+
+        if (props.height) {
+            style += `height: ${props.height}px;`;
+        }
+    }
+
+    return style;
+}
 </script>
 
 <template>
@@ -70,7 +90,7 @@ function maximise() {
             'application',
             maximised ? 'application--maximised' : '',
         ]" 
-        :style="`z-index: ${zIndex}; left: ${appX}px; top: ${appY}px;`"
+        :style="getStyle()"
         ref="application"
     >
         <div class="application__titlebar" @mousedown="startDragging" @mouseup="dragging = false">

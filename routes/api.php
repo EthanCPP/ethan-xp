@@ -1,5 +1,6 @@
 <?php
 
+use App\Api\Controllers\EmailController;
 use App\Api\Controllers\FileController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -18,3 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/files', [FileController::class, 'index']);
 Route::get('/files/location/{location}', [FileController::class, 'locationIndex']);
 Route::get('/files/folder/{id}', [FileController::class, 'filesInFolder']);
+
+Route::post('/send-email', [EmailController::class, 'send']);
+
+Route::get('/token', fn() => response()->json(['token' => csrf_token()]));
