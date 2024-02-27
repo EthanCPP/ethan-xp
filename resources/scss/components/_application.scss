@@ -103,6 +103,11 @@
                 }
             }
 
+            &--disabled {
+                opacity: 0.5;
+                pointer-events: none;
+            }
+
             &--close {
                 background: linear-gradient(145deg, #efaa98, #e24d20, #ac2400);
 

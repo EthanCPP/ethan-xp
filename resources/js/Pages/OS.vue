@@ -7,6 +7,7 @@ import Notepad from '../Components/Applications/Notepad.vue';
 import ErrorMsg from '../Components/Applications/ErrorMsg.vue'
 import Outlook from '../Components/Applications/Outlook.vue';
 import InfoMsg from '../Components/Applications/InfoMsg.vue';
+import Minesweeper from '../Components/Applications/Minesweeper.vue';
 
 const emit = defineEmits(['logout', 'shutdown']);
 
@@ -39,6 +40,7 @@ function startApplication(application, target = '', other = '') {
         case 'error': component = ErrorMsg; break;
         case 'outlook': component = Outlook; break;
         case 'info': component = InfoMsg; break;
+        case 'minesweeper': component = Minesweeper; break;
     }
 
     spawnApplication(component, target, other);

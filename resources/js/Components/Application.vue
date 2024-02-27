@@ -1,7 +1,7 @@
 <script setup>
 import { onMounted, ref } from 'vue';
 
-const props = defineProps(['icon', 'title', 'zIndex', 'width', 'height']);
+const props = defineProps(['icon', 'title', 'zIndex', 'width', 'height', 'maxDisabled']);
 
 const application = ref(null);
 const appX = ref(0);
@@ -50,6 +50,10 @@ function startDragging() {
 }
 
 function maximise() {
+    if (props.maxDisabled) {
+        return;
+    }
+    
     if (! maximised.value) {
         savedX.value = appX.value;
         savedY.value = appY.value;
@@ -101,7 +105,18 @@ function getStyle() {
 
             <div class="application__titlebar__right">
                 <button type="button" class="btn application__titlebar__btn application__titlebar__btn--minimise"><div></div></button>
-                <button type="button" class="btn application__titlebar__btn application__titlebar__btn--maximise" @click="maximise"><div></div></button>
+                <button 
+                    type="button" 
+                    :class="[
+                        'btn',
+                        'application__titlebar__btn',
+                        'application__titlebar__btn--maximise',
+                        maxDisabled ? 'application__titlebar__btn--disabled' : '',
+                    ]" 
+                    @click="maximise"
+                >
+                    <div></div>
+                </button>
                 <button type="button" class="btn application__titlebar__btn application__titlebar__btn--close" @click="$emit('close')"><div></div><div></div></button>
             </div>
         </div>
