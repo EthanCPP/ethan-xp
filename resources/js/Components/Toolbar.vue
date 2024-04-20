@@ -2,6 +2,7 @@
 import { onMounted, ref } from 'vue';
 import StartMenu from './StartMenu.vue';
 import Icons from '@/Util/Icons';
+import ToolbarTm from './ToolbarTm.vue';
 
 const emit = defineEmits(['logout', 'shutdown', 'startApplication']);
 
@@ -60,6 +61,8 @@ onMounted(() => {
         </button>
 
         <div class="toolbar__shortcuts">
+            <ToolbarTm />
+
             <span class="toolbar__shortcuts__time">{{ time }}</span>
         </div>
     </div>

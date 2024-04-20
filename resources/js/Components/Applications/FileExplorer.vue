@@ -47,10 +47,16 @@ onMounted(() => {
 function startApplication(application, target = '', other = '') {
     emit('startApplication', application, target, other);
 }
+
+function go() {
+    if (data.value.location == 'internet-explorer') {
+        window.open(data.value.address, '_blank').focus();
+    }
+}
 </script>
 
 <template>
-    <Application :icon="data.icon" :title="data.title">
+    <Application :icon="data.icon" :title="data.title" :start-maximised="data.location == 'internet-explorer'">
         <div class="file-explorer">
             <div class="file-explorer__toolbar">
                 <button type="button" class="btn file-explorer__toolbar__btn">File</button>
@@ -89,7 +95,15 @@ function startApplication(application, target = '', other = '') {
             <div class="file-explorer__address-bar">
                 <span class="file-explorer__address-bar__title">Address</span>
                 <div class="file-explorer__address-bar__element">{{ data.address }}</div>
-                <button type="button" class="btn file-explorer__address-bar__go">
+                <button 
+                    type="button" 
+                    :class="[
+                        'btn',
+                        'file-explorer__address-bar__go',
+                        data.location == 'internet-explorer' ? 'file-explorer__address-bar__go--hint' : '',
+                    ]"
+                    @click="go"
+                >
                     <img :src="Icons.navNext" />
                     <span>Go</span>
                 </button>

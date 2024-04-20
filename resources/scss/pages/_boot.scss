@@ -17,19 +17,29 @@
         }
 
         &__logo {
-            width: 500px;
+            width: 240px;
             height: auto;
+
+            @include media-breakpoint-up(lg) {
+                width: 400px;
+            }
         }
 
         &__loader {
             display: block;
-            margin-top: 80px;
-            width: 300px;
-            height: 32px;
+            margin-top: 40px;
+            width: 240px;
+            height: 26px;
             border: 2px solid #969696;
             border-radius: 8px;
             position: relative;
             overflow: hidden;
+
+            @include media-breakpoint-up(lg) {
+                margin-top: 80px;
+                width: 300px;
+                height: 32px;
+            }
 
             &::after {
                 content: "";

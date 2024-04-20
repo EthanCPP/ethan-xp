@@ -139,6 +139,10 @@
                 color: #1f1f1f;
                 font-size: 13px;
             }
+
+            &--hint {
+                animation: go-hint 2s ease infinite;
+            }
         }
     }
 
@@ -146,5 +150,19 @@
         padding: 10px;
         display: flex;
         flex-wrap: wrap;
+    }
+}
+
+@keyframes go-hint {
+    0% {
+        box-shadow: 0 0 0 blue;
+    }
+
+    50% {
+        box-shadow: 0 0 8px blue;
+    }
+
+    100% {
+        box-shadow: 0 0 0 blue;
     }
 }

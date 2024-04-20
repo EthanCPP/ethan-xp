@@ -9,9 +9,13 @@
 
         &__top {
             background-color: #00309c;
-            height: 140px;
+            height: 80px;
             flex-shrink: 0;
             position: relative;
+
+            @include media-breakpoint-up(lg) {
+                height: 140px;
+            }
 
             &::after {
                 content: "";
@@ -33,7 +37,13 @@
             position: relative;
             display: flex;
             align-items: center;
-            gap: 200px;
+            gap: 50px;
+            flex-direction: column;
+
+            @include media-breakpoint-up(lg) {
+                flex-direction: row;
+                gap: 200px;
+            }
 
             &::before {
                 content: "";
@@ -49,21 +59,37 @@
         }
 
         &__left {
-            text-align: right;
-            width: 50%;
+            text-align: center;
+            padding-top: 30px;
+
+            @include media-breakpoint-up(lg) {
+                padding-top: 0;
+                text-align: right;
+                width: 50%;
+            }
         }
 
         &__logo {
-            width: 300px;
+            width: 180px;
             height: auto;
             margin-bottom: 30px;
             display: block;
             margin-left: auto;
+            margin-right: auto;
+
+            @include media-breakpoint-up(lg) {
+                width: 240px;
+                margin-right: initial;
+            }
         }
 
         &__prompt {
             color: white;
-            font-size: 40px;
+            font-size: 20px;
+
+            @include media-breakpoint-up(lg) {
+                font-size: 40px;
+            }
         }
 
         &__welcome {
@@ -72,6 +98,13 @@
             color: white;
             font-weight: 600;
             text-shadow: 3px 3px 3px #113499;
+            display: block;
+            margin-top: 100px;
+
+            @include media-breakpoint-up(lg) {
+                display: initial;
+                margin-top: 0;
+            }
         }
 
         &__divider {
@@ -82,13 +115,22 @@
             height: 100%;
             width: 3px;
             background: linear-gradient(0, #5a7edc, #8aa8eb, #5a7edc);
+            display: none;
+
+            @include media-breakpoint-up(lg) {
+                display: block;
+            }
         }
 
         &__right {
-            width: 50%;
             display: flex;
             flex-direction: column;
-            gap: 60px
+            gap: 20px;
+
+            @include media-breakpoint-up(lg) {
+                width: 50%;
+                gap: 60px;
+            }
         }
 
         &__logout-logo {
@@ -108,11 +150,15 @@
 
             &__inner {
                 display: flex;
-                gap: 30px;
+                gap: 18px;
                 opacity: 0.6;
                 transition: opacity 0.7s ease;
                 padding: 20px;
                 position: relative;
+
+                @include media-breakpoint-up(lg) {
+                    gap: 30px;
+                }
 
                 &::before {
                     content: "";
@@ -160,9 +206,14 @@
                 background-color: #ccd6eb;
                 padding: 5px;
                 box-shadow: 3px 3px 12px 3px #486dca;
-                width: 100px;
-                height: 100px;
+                width: 80px;
+                height: 80px;
                 transition: background-color 0.3s ease;
+
+                @include media-breakpoint-up(lg) {
+                    width: 100px;
+                    height: 100px;
+                }
             }
 
             &__image {
@@ -172,13 +223,20 @@
             }
 
             &__name {
-                font-size: 40px;
-                line-height: 40px;
+                font-size: 30px;
+                line-height: 30px;
                 color: white;
+
+                @include media-breakpoint-up(lg) {
+                    font-size: 40px;
+                    line-height: 40px;
+                }
             }
 
             &__password-wrap {
-                margin-top: 4px;
+                @include media-breakpoint-up(lg) {
+                    margin-top: 4px;
+                }
             }
 
             &__password-prompt {
@@ -279,8 +337,12 @@
         &__bottom {
             background: linear-gradient(90deg, #3833ac, #00309c);
             position: relative;
-            height: 140px;
+            height: 80px;
             flex-shrink: 0;
+
+            @include media-breakpoint-up(lg) {
+                height: 140px;
+            }
 
             &::after {
                 content: "";

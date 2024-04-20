@@ -50,7 +50,7 @@ function startApplication(application, target, other) {
             <div class="start-menu__header__user-profile">
                 <img :src="UserIconFrog" class="start-menu__header__user-image" />
             </div>
-            <span class="start-menu__header__user-name">Ethan</span>
+            <span class="start-menu__header__user-name">Guest</span>
         </div>
         <div class="start-menu__body">
             <div class="start-menu__quicklaunch">

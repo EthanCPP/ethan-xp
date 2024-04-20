@@ -1,7 +1,7 @@
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, onUpdated, ref } from 'vue';
 
-const props = defineProps(['icon', 'title', 'zIndex', 'width', 'height', 'maxDisabled', 'fitContent']);
+const props = defineProps(['icon', 'title', 'zIndex', 'width', 'height', 'maxDisabled', 'fitContent', 'startMaximised']);
 
 const application = ref(null);
 const appX = ref(0);
@@ -16,32 +16,48 @@ const startY = ref(0);
 
 // Maximise logic
 const maximised = ref(false);
+const maximisedStart = ref(false);
 const savedX = ref(0);
 const savedY = ref(0);
 
 onMounted(() => {
-    appX.value = (window.innerWidth / 2) - (application.value.offsetWidth / 2) + Math.ceil(Math.random() * 100);
-    appY.value = (window.innerHeight / 2) - (application.value.offsetHeight / 2) + Math.ceil(Math.random() * 100);
 
-    document.addEventListener('mousemove', function(e) {
-        if (dragging.value && ! maximised.value) {
-            e.preventDefault();
+    if (window.innerWidth > 992) {
+        appX.value = (window.innerWidth / 2) - (application.value.offsetWidth / 2) + Math.ceil(Math.random() * 100);
+        appY.value = (window.innerHeight / 2) - (application.value.offsetHeight / 2) + Math.ceil(Math.random() * 100);
 
-            const mX = e.clientX;
-            const mY = e.clientY;
+        document.addEventListener('mousemove', function(e) {
+            if (dragging.value && ! maximised.value) {
+                e.preventDefault();
 
-            if (dragMX.value === null && dragMY.value === null) {
-                dragMX.value = mX;
-                dragMY.value = mY;
-                startX.value = appX.value;
-                startY.value = appY.value;
+                const mX = e.clientX;
+                const mY = e.clientY;
+
+                if (dragMX.value === null && dragMY.value === null) {
+                    dragMX.value = mX;
+                    dragMY.value = mY;
+                    startX.value = appX.value;
+                    startY.value = appY.value;
+                }
+
+                appX.value = startX.value + (mX - dragMX.value);
+                appY.value = startY.value + (mY - dragMY.value);
             }
-
-            appX.value = startX.value + (mX - dragMX.value);
-            appY.value = startY.value + (mY - dragMY.value);
-        }
-    })
+        })
+    } else {
+        maximise();
+    }
 });
+
+onUpdated(() => {
+    if (props.startMaximised && ! maximisedStart.value) {
+        maximisedStart.value = true;
+
+        if (! maximised.value) {
+            maximise();
+        }
+    }
+})
 
 function startDragging() {
     dragMX.value = null;

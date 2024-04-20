@@ -10,7 +10,7 @@ const STATES = {
     OS: 2,
 };
 
-const state = ref(STATES.OS);
+const state = ref(STATES.BOOTING);
 const args = ref({});
 
 onMounted(() => {

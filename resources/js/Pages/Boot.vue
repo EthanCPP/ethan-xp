@@ -8,11 +8,13 @@ const showBoot = ref(false);
 const bootLoader = ref(null);
 const segmentX = ref(0);
 
+var interval = null;
+
 onMounted(() => {
     setTimeout(() => {
         showBoot.value = true;
 
-        setInterval(() => {
+        interval = setInterval(() => {
             segmentX.value += 20;
 
             if (segmentX.value - 80 >= bootLoader.value.clientWidth) {
@@ -26,6 +28,7 @@ onMounted(() => {
     }, 7000);
 
     setTimeout(() => {
+        clearInterval(interval);
         emit('booted');
     }, 9000);
 });

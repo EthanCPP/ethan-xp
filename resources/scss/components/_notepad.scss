@@ -1,6 +1,6 @@
 .notepad {
     display: flex;
-    height: inherit;
+    flex-grow: 1;
     flex-direction: column;
 
     &__toolbar {

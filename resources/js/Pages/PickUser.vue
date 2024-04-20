@@ -37,7 +37,7 @@ onMounted(() => {
             shuttingDown.value = true;
 
             setTimeout(() => {
-                alert('done');
+                alert('FATAL: No bootable medium found! System halted.');
             }, 2000);
         }, 2000);
     }
@@ -134,7 +134,7 @@ function selectUser(user) {
                     <div class="pick-layout__user pick-layout__user--selected">
                         <div class="pick-layout__user__inner">
                             <div class="pick-layout__user__profile">
-                                <img class="pick-layout__user__image" src="https://via.placeholder.com/400x400" />
+                                <img class="pick-layout__user__image" :src="UserIconFrog" />
                             </div>
 
                             <div>
