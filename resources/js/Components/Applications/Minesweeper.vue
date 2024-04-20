@@ -186,7 +186,7 @@ function reveal(button) {
                     return;
                 }
 
-                if (neighbour.classList.contains('mine')) {
+                if (neighbour.classList.contains('mine') || neighbour.classList.contains('flag')) {
                     return;
                 }
 
@@ -203,6 +203,10 @@ function clickButton(i) {
 
     if (! gameStarted) {
         startGame();
+    }
+
+    if (i.target.parentElement.classList.contains('flag')) {
+        return;
     }
 
     reveal(i.target);
