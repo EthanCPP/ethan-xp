@@ -77,9 +77,11 @@ function maximise() {
         appY.value = 0;
         maximised.value = true;
     } else {
-        appX.value = savedX.value;
-        appY.value = savedY.value;
-        maximised.value = false;
+        if (window.innerWidth > 992) {
+            appX.value = savedX.value;
+            appY.value = savedY.value;
+            maximised.value = false;
+        }
     }
 }
 
