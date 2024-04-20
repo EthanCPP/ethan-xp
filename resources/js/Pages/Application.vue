@@ -10,10 +10,11 @@ const STATES = {
     OS: 2,
 };
 
-const state = ref(STATES.BOOTING);
+const state = ref(STATES.OS);
 const args = ref({});
 
 onMounted(() => {
+    // STOP RIGHT MOUSE CLICK
     // document.addEventListener('contextmenu', (e) => {
     //     e.preventDefault();
     // });

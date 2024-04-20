@@ -31,6 +31,14 @@
         line-height: 22px;
     }
 
+    &__happy,
+    &__sad {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
     &__restart {
         padding: 0;
         width: 28px;
@@ -39,6 +47,7 @@
         border: 1px solid #848484;
         background-color: #c0c0c0;
         box-shadow: inset 1px 1px 1px 0 white, inset -1px -1px 1px 0 #848484;
+        position: relative;
     }
 
     &__stage {
@@ -47,5 +56,123 @@
         border-right: 2px solid white;
         border-bottom: 2px solid white;
         flex-grow: 1;
+    }
+
+    &__row {
+        display: flex;
+    }
+
+    &__mine,
+    &__flag {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: none;
+        pointer-events: none;
+    }
+
+    &__col {
+        position: relative;
+        width: 24px;
+        height: 24px;
+
+        &.mine {
+            .minesweeper {
+                &__mine {
+                    display: block;
+                }
+            }
+        }
+
+        &.flag {
+            &:not(.revealed) {
+                .minesweeper {
+                    &__flag {
+                        display: block;
+                        z-index: 2;
+                    }
+                }
+            }
+        }
+
+        &.revealed {
+            .minesweeper {
+                &__button {
+                    display: none;
+                }
+            }
+        }
+
+        &.dead {
+            .minesweeper {
+                &__answer {
+                    background-color: #ff0000;
+                }
+            }
+        }
+    }
+
+    &__answer {
+        background-color: #c0c0c0;
+        border-bottom: 1px solid #808080;
+        border-right: 1px solid #808080;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        line-height: 24px;
+        font-family: 'times new roman';
+        font-weight: 600;
+        font-size: 24px;
+
+        &.mines-1 {
+            color: #0000ff;
+        }
+
+        &.mines-2 {
+            color: #008000;
+        }
+
+        &.mines-3 {
+            color: #ff0000;
+        }
+
+        &.mines-4 {
+            color: #000080;
+        }
+
+        &.mines-5 {
+            color: #800000;
+        }
+
+        &.mines-6 {
+            color: #2b0000;
+        }
+
+        &.mines-7 {
+            color: #ff0000;
+        }
+
+        &.mines-8 {
+            color: #008000;
+        }
+    }
+
+    &__button {
+        background-color: #c0c0c0 !important;
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        border: none;
+        border-radius: 0;
+        box-shadow: inset 2px 2px 0px white, inset -2px -2px 0 #808080;
+        transition: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+
+        &:active {
+            box-shadow: inset 2px 2px 0px #808080, inset -2px -2px 0 white;
+        }
     }
 }

@@ -1,7 +1,7 @@
 <script setup>
 import { onMounted, ref } from 'vue';
 
-const props = defineProps(['icon', 'title', 'zIndex', 'width', 'height', 'maxDisabled']);
+const props = defineProps(['icon', 'title', 'zIndex', 'width', 'height', 'maxDisabled', 'fitContent']);
 
 const application = ref(null);
 const appX = ref(0);
@@ -75,12 +75,17 @@ function getStyle() {
     style += `top: ${appY.value}px;`;
 
     if (! maximised.value) {
-        if (props.width) {
-            style += `width: ${props.width}px;`;
-        }
+        if (props.fitContent) {
+            style += `width: fit-content;`;
+            style += `height: fit-content;`;
+        } else {
+            if (props.width) {
+                style += `width: ${props.width}px;`;
+            }
 
-        if (props.height) {
-            style += `height: ${props.height}px;`;
+            if (props.height) {
+                style += `height: ${props.height}px;`;
+            }
         }
     }
 
